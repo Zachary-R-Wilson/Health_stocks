@@ -18,5 +18,5 @@ for link in link_list:
     stock_df = stock_df.append(get_stock(link),ignore_index=True)
 
 # save the data to the sqlite db, health.db, and commit the changes to the file
-stock_df.to_sql('health', con=conn, if_exists='append')
+stock_df.to_sql('health', con=conn, if_exists='append',index=False)
 conn.commit()
