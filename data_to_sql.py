@@ -1,6 +1,8 @@
 import pandas as pd
-from scrape import get_stock
 import sqlite3
+from scrape import get_stock
+from push_to_dropbox import main
+
 
 # create a connection and a cursor for sqlite
 conn = sqlite3.connect('health.db')
@@ -20,3 +22,5 @@ for link in link_list:
 # save the data to the sqlite db, health.db, and commit the changes to the file
 stock_df.to_sql('health', con=conn, if_exists='append',index=False)
 conn.commit()
+# push it to dropbox
+main()
